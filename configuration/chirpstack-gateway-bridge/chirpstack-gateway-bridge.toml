@@ -2,6 +2,11 @@
 # configuration example and documentation.
 
 [integration.mqtt.auth.generic]
-servers=["tcp://mosquitto:1883"]
+servers=["tcp://mosquitto:2883"]
 username=""
 password=""
+
+[backend.basic_station]
+tls_cert="/etc/chirpstack-gateway-bridge/certs/basicstation.pem"
+tls_key="/etc/chirpstack-gateway-bridge/certs/basicstation-key.pem"
+ca_cert="/etc/chirpstack-gateway-bridge/certs/ca.pem"

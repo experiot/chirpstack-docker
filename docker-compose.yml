@@ -5,6 +5,7 @@ services:
     restart: unless-stopped
     volumes:
       - ./configuration/chirpstack:/etc/chirpstack
+      - ./certs/ca:/etc/chirpstack/certs
     depends_on:
       - postgres
       - mosquitto
@@ -20,7 +21,7 @@ services:
     image: chirpstack/chirpstack-gateway-bridge:4
     restart: unless-stopped
     ports:
-      - "127.0.0.1:1700:1700/udp"
+      - "1700:1700/udp"
     volumes:
       - ./configuration/chirpstack-gateway-bridge:/etc/chirpstack-gateway-bridge
     environment:
@@ -35,9 +36,10 @@ services:
     restart: unless-stopped
     command: -c /etc/chirpstack-gateway-bridge/chirpstack-gateway-bridge-basicstation-eu868.toml
     ports:
-      - "127.0.0.1:3002:3001"
+      - "3001:3001"
     volumes:
       - ./configuration/chirpstack-gateway-bridge:/etc/chirpstack-gateway-bridge
+      - ./certs/chirpstack-gateway-bridge/basicstation:/etc/chirpstack-gateway-bridge/certs
     depends_on:
       - mosquitto
 
