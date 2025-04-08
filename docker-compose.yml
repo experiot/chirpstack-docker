@@ -5,7 +5,7 @@ services:
     restart: unless-stopped
     volumes:
       - ./configuration/chirpstack:/etc/chirpstack
-      - ./certs/ca:/etc/chirpstack/certs
+      - ../certs/ca:/etc/chirpstack/certs
     depends_on:
       - postgres
       - mosquitto
@@ -39,7 +39,7 @@ services:
       - "3001:3001"
     volumes:
       - ./configuration/chirpstack-gateway-bridge:/etc/chirpstack-gateway-bridge
-      - ./certs/chirpstack-gateway-bridge/basicstation:/etc/chirpstack-gateway-bridge/certs
+      - ../certs/chirpstack-gateway-bridge/basicstation:/etc/chirpstack-gateway-bridge/certs
     depends_on:
       - mosquitto
 
